@@ -8,7 +8,7 @@ import re  # For regex operations
 
 # Load data
 movies_df = pd.read_csv('movies.csv')  # Ensure the correct path to movies.csv
-ratings_df = pd.read_csv('ratings.csv')  # Ensure the correct path to ratings.csv
+# ratings_df = pd.read_csv('ratings.csv')  # Ensure the correct path to ratings.csv
 
 # Preprocess the genres column to ensure there are no null values
 movies_df['genres'] = movies_df['genres'].fillna('')
