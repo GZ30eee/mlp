@@ -8,4 +8,4 @@ mlxtend==0.23.3
 yfinance==0.2.51
 scikit-learn==1.5.2
 seaborn==0.13.2
-pillow==11.0.
+pillow==11.0.0
