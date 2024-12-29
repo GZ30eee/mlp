@@ -4,4 +4,8 @@ mlxtend==0.23.3
 yfinance==0.2.22
 matplotlib==3.8.0
 scikit-learn==1.0.2
+<<<<<<< HEAD
 numpy==1.21.0
+=======
+numpy==1.21.0
+>>>>>>> e3d7294425b63833c7774968429c604be31ae9c3

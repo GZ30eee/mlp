@@ -63,15 +63,21 @@ if transactions:
         st.write(frequent_itemsets)
 
     # Step 5: Generate Association Rules (only if there are frequent itemsets)
+    # Step 5: Generate Association Rules (only if there are frequent itemsets)
     if not frequent_itemsets.empty:
-        rules = association_rules(frequent_itemsets, metric="confidence", min_threshold=min_confidence)
-
+        # Calculate the number of itemsets
+        num_itemsets = len(frequent_itemsets)
+        
+        # Generate Association Rules
+        rules = association_rules(frequent_itemsets, metric="confidence", min_threshold=min_confidence, num_itemsets=num_itemsets)
+    
         # Display Association Rules
         st.subheader("Association Rules")
         if rules.empty:
             st.warning(f"No association rules found with confidence >= {min_confidence}")
         else:
             st.write(rules)
+
 
 else:
     st.warning("No transactions to analyze. Please enter some data or generate random transactions.")
