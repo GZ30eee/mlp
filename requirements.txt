@@ -4,4 +4,4 @@ mlxtend==0.23.3
 yfinance==0.2.22
 matplotlib==3.8.0
 scikit-learn==1.0.2
-    numpy==1.21.0
+numpy==1.21.0
