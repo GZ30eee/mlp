@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>One Page Web Application</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/shorthandcss@1.1.1/dist/shorthand.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"
+    />
+    <style>
+      body {
+        position: relative;
+        margin: 0;
+        scroll-behavior: smooth; /* Smooth scrolling */
+      }
+      section {
+        height: 100vh; /* Full screen height */
+        display: flex;
+        align-items: center; /* Center content vertically */
+        justify-content: center; /* Center content horizontally */
+        text-align: center;
+      }
+      #about {
+        background-color: black; /* Light background for About section */
+      }
+      #project {
+        background-color: #e9ecef; /* Slightly darker background for Project section */
+      }
+      #project {
+    width: 100%; /* Or any desired width */
+    background-color: #f8f9fa; /* Light background for visibility */
+    padding: 20px;
+    border-radius: 8px; /* Rounded corners */
+    border: 1px solid #ddd; /* Optional border */
+    height: auto;
+  }
+      #developer {
+        background-color: #f8f9fa; /* Light background for Developer section */
+      }
+      footer {
+        background-color: #343a40; /* Dark footer */
+        color: white;
+        padding: 20px 0;
+        text-align: center;
+      }
+      .poppins-thin {
+        font-family: "Poppins", serif;
+        font-weight: 100;
+        font-style: normal;
+      }
+      .poppins-bold {
+        font-family: "Poppins", serif;
+        font-weight: 700;
+        font-style: normal;
+      }
+      .poppins-semibold {
+  font-family: "Poppins", serif;
+  font-weight: 600;
+  font-style: normal;
+}
+.card-image {
+    height: 100%;
+    object-fit: cover;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+  }
+  body {
+    font-family: 'Poppins', sans-serif;
+  }
+  #project h1 {
+    margin-bottom: 1rem;
+  }
+
+  /* #project .row {
+    margin: 0 -0.5rem;
+  }
+
+  #project .col-md-6 {
+    padding: 0 0.5rem;
+  } */
+
+  @media (max-width: 576px) {
+        #project {
+          padding-top: 3rem; /* Adjust top padding */
+          padding-bottom: 3rem; /* Adjust bottom padding */
+        }
+        
+        .card {
+          margin-bottom: 2rem; /* Increase space between cards on mobile */
+        }
+      }
+
+      .hover-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.hover-overlay {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #5a4fcf, #3e3b8f);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  z-index: 1;
+  transition: left 0.4s ease-in-out;
+}
+
+.hover-card:hover .hover-overlay {
+  left: 0;
+  cursor: pointer;
+}
+
+.hover-text {
+  opacity: 0;
+  transform: translateX(-20px);
+  animation: slideIn 0.5s forwards ease-in-out;
+}
+
+.hover-card:hover .hover-text {
+  animation: slideIn 0.5s forwards ease-in-out;
+}
+
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@media (max-width: 576px) { /* Adjust styles for small screens */
+    .position-absolute {
+      top: 400px; /* Moves the video down by 100px */
+      transform: scale(4); /* Zooms in the video */
+      transform-origin: center; /* Ensures zoom is centered */
+    }
+  }
+  /* For Chrome, Safari, and Edge */
+::-webkit-scrollbar {
+  width: 12px;  /* Width of the scrollbar */
+  height: 12px; /* Height of horizontal scrollbar */
+  
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #000; /* Black color for the thumb */
+  border-radius: 10px; /* Rounded corners for the thumb */
+  border: 3px solid grey; /* Optional: white border for contrast */
+}
+
+::-webkit-scrollbar-track {
+  background: black; /* Light grey background for the track */
+  border-radius: 10px; /* Rounded corners for the track */
+}
+
+::-webkit-scrollbar-track-piece {
+  background: black;
+}
+
+::-webkit-scrollbar-corner {
+  background: #f1f1f1;
+}
+
+
+/* From Uiverse.io by Javierrocadev */ 
+.cardn {
+  width: 350px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  /* gap: 10px; */
+  background-color: #fffffe;
+  border-radius: 15px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cardn::before {
+  content: "";
+  width: 350px;
+  height: 100px;
+  position: absolute;
+  top: 0;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  border-bottom: 3px solid #fefefe;
+  background: linear-gradient(40deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
+  transition: all 0.5s ease;
+}
+
+.cardn * {
+  z-index: 1;
+}
+
+.imagen {
+  width: 90px;
+  height: 90px;
+  background-color: #1468BF;
+  border-radius: 50%;
+  border: 4px solid #fefefe;
+  margin-top: 30px;
+  transition: all 0.5s ease;
+}
+
+.card-infon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  transition: all 0.5s ease;
+}
+
+.card-infon span {
+  font-weight: 600;
+  font-size: 24px;
+  color: #161A42;
+  margin-top: 15px;
+  line-height: 5px;
+}
+
+.card-infon p {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.buttonn {
+  text-decoration: none;
+  background-color: #1468BF;
+  color: white;
+  padding: 5px 20px;
+  border-radius: 5px;
+  border: 1px solid white;
+  transition: all 0.5s ease;
+}
+
+.cardn:hover::before {
+  width: 350px;
+  height: 300px;
+  border-bottom: none;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  transform: scale(0.95);
+}
+
+.cardn:hover .card-infon {
+  transform: translate(0%,-25%);
+}
+
+.cardn:hover .imagen {
+  transform: scale(2) translate(-60%,-40%);
+}
+
+.buttonn:hover {
+  background-color: #FF6844;
+  transform: scale(1.1);
+}
+
+    </style>
+  </head>
+  <body data-spy="scroll" data-target="#navbarNav" data-offset="70">
+    <!-- Navbar -->
+    <nav
+      class="navbar navbar-expand-lg navbar-dark fixed-top poppins-thin"
+      style="background-color: black"
+    >
+      <a class="navbar-brand" href="#">Data Verse</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#project">Project</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#developer">Developer</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- About Section -->
+    <section id="about" class="min-h-screen flex justify-center items-center relative mb-4 overflow-hidden">
+      <!-- Video background -->
+      <div class="position-absolute top-0 left-0 w-full h-full">
+        <video autoplay muted loop class="object-cover w-full h-full object-center">
+          <source src="./videos/vid.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    
+      <!-- Content -->
+      <div class="mx-5 md:mx-l5 text-center relative z-10">
+        <div class="inline-block br-round bg-indigo-30 indigo-lightest p-2 px-3 fs-s2 mb-5 poppins-semibold">
+          <div class="inline-block bg-indigo indigo-lightest br-round px-3 py-2 mr-1 fs-s3 poppins-thin">
+            Data Mining
+          </div>
+          by Ghanshyamsinh Zala
+        </div>
+        <div>
+          <h1 class="white fs-l3 lh-2 md-fs-xl1 md-lh-1 fw-900 poppins-bold">
+            DataVerse
+          </h1>
+          <p class="text-sm text-white mt-4 poppins-semibold">
+            DataVerse is an innovative platform designed to empower users with</br>
+            cutting-edge data analysis tools. Explore various data mining</br>
+            techniques and machine learning models to unlock insights from your
+            data.
+          </p>
+        </div>
+      </div>
+    </section>
+    
+    
+    
+    
+    
+
+    <!-- Project Section -->
+    <section id="project" class="py-5 mt-6 bg-white" style="border: 0;">
+      <!-- Container -->
+      <div class="container-fluid">
+        <!-- Heading -->
+        <h1 class="black fs-l3 lh-2 md-fs-xl1 md-lh-1 fw-900 poppins-bold mb-4 text-center" style="margin-bottom: 1rem; margin-top: 0;">
+          Projects
+        </h1>
+    
+        <!-- Cards -->
+        <div class="row g-4">
+          <!-- Card 1 -->
+          <div class="col-12 col-sm-6 col-lg-6 mb-4 mb-sm-0">
+            <div class="card hover-card h-100 rounded-3" style="border-radius: 12px; overflow: hidden; position: relative; ">
+              <div class="row g-2 h-100">
+                <!-- Image -->
+                <div class="col-12 col-md-4 p-0">
+                  <img src="./img/sp.jpg" class="img-fluid rounded-start" alt="Card 1" style="object-fit: cover; height: 200px; width: 100%;">
+                </div>
+                <!-- Content -->
+                <div class="col-12 col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title text-left">Stock Prize Estimation</h5>
+                    <p class="card-text text-left">
+                      allows users to analyze stock price trends by fetching historical data for a specified stock symbol and date range.
+                    </p>
+                    <p class="card-text text-left text-white">
+                      <span class="badge bg-indigo ms-1 rounded-pill poppins-regular p-2">Stock</span>
+                      <span class="badge bg-indigo ms-1 rounded-pill p-2">ML</span>
+                      <span class="badge bg-indigo ms-1 rounded-pill p-2">Garph</span>
+                    </p>
+                    
+                  </div>
+                </div>
+              </div>
+              <!-- Hover Effect -->
+               <a href="https://oqclx6hdemyfyalhjxccr2.streamlit.app/" target="_blank">
+              <div class="hover-overlay">
+                <span class="hover-text">Explore</span>
+              </div>
+            </a>
+            </div>
+          </div>
+
+    
+          <!-- Card 2 -->
+          <div class="col-12 col-sm-6 col-lg-6 mb-4 mb-sm-0">
+            <div class="card hover-card h-100 rounded-3" style="border-radius: 12px; overflow: hidden; position: relative;">
+              <div class="row g-2 h-100">
+                <!-- Image -->
+                <div class="col-12 col-md-4 p-0">
+                  <img src="./img/clu.jpg" class="img-fluid rounded-start" alt="Card 1" style="object-fit: cover; height: 200px; width: 100%;">
+                </div>
+                <!-- Content -->
+                <div class="col-12 col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title text-left">Clustering Visualization Tool</h5>
+                    <p class="card-text text-left">
+                      Visualize K-Means clustering with customizable settings for data samples, clusters, and standard deviation.
+                    </p>
+                    <p class="card-text text-left text-white">
+                      <span class="badge bg-indigo ms-1 rounded-pill poppins-regular p-2">Clustering</span>
+                      <span class="badge bg-indigo ms-1 rounded-pill p-2">DataVisualization</span>
+                      <span class="badge bg-indigo ms-1 rounded-pill p-2">ML</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <!-- Hover Effect -->
+               <a href="https://clusteringvis.streamlit.app/">
+              <div class="hover-overlay">
+                <span class="hover-text">Explore</span>
+              </div>
+            </a>
+            </div>
+          </div>
+
+    
+          <!-- Add more cards here as needed -->
+    
+        </div> <!-- End of row -->
+
+        <div class="row g-4">
+          <!-- Card 1 -->
+          <div class="col-12 col-sm-6 col-lg-6 mb-4 mb-sm-0">
+            <div class="card hover-card h-100 rounded-3" style="border-radius: 12px; overflow: hidden; position: relative;">
+              <div class="row g-2 h-100">
+                <!-- Image -->
+                <div class="col-12 col-md-4 p-0">
+                  <img src="./img/tree.jpg" class="img-fluid rounded-start" alt="Card 1" style="object-fit: cover; height: 200px; width: 100%;">
+                </div>
+                <!-- Content -->
+                <div class="col-12 col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title text-left">Decision Tree Classifier</h5>
+                    <p class="card-text text-left">
+                      Train and visualize a Decision Tree model on classification or regression datasets using Streamlit
+                                        </p>
+                    <p class="card-text text-left text-white">
+                      <span class="badge bg-indigo ms-1 rounded-pill poppins-regular p-2">DecisionTree</span>
+                      <span class="badge bg-indigo ms-1 rounded-pill p-2">DataScience</span>
+                      <span class="badge bg-indigo ms-1 rounded-pill p-2">MachineLearning</span>
+                    </p>
+                    
+                  </div>
+                </div>
+              </div>
+              <!-- Hover Effect -->
+              <a href="https://descisiontreeclassifier.streamlit.app/" target="_blank">
+              <div class="hover-overlay">
+                <span class="hover-text">Explore</span>
+              </div>
+            </a>
+            </div>
+          </div>
+
+    
+          <!-- Card 2 -->
+          <div class="col-12 col-sm-6 col-lg-6 mb-4 mb-sm-0">
+            <div class="card hover-card h-100 rounded-3" style="border-radius: 12px; overflow: hidden; position: relative;">
+              <div class="row g-2 h-100">
+                <!-- Image -->
+                <div class="col-12 col-md-4 p-0">
+                  <img src="./img/apr.jpg" class="img-fluid rounded-start" alt="Card 1" style="object-fit: cover; height: 200px; width: 100%;">
+                </div>
+                <!-- Content -->
+                <div class="col-12 col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title text-left">Apriori Association Rules                    </h5>
+                    <p class="card-text text-left">
+                      Implement the Apriosri algorithm for mining frequent itemsets and generating association rules from transaction data.                    
+                    </p>
+                    <p class="card-text text-left text-white">
+                      <span class="badge bg-indigo ms-1 rounded-pill poppins-regular p-2">AprioriAlgorithm</span>
+                      <span class="badge bg-indigo ms-1 rounded-pill p-2">RuleMining</span>
+                      <span class="badge bg-indigo ms-1 rounded-pill p-2">Tables</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <!-- Hover Effect -->
+              <a href="https://5rn3sfdygpudr2x5s8jb48.streamlit.app/" target="_blank">
+              <div class="hover-overlay" >
+                <span class="hover-text">Explore</span>
+              </div>
+            </a>
+            </div>
+          </div>
+
+    
+          <!-- Add more cards here as needed -->
+    
+        </div> <!-- End of row -->
+
+        <div class="row g-4">
+          <!-- Card 1 -->
+          <div class="col-12 col-sm-6 col-lg-6 mb-4 mb-sm-0">
+            <div class="card hover-card h-100 rounded-3" style="border-radius: 12px; overflow: hidden; position: relative;">
+              <div class="row g-2 h-100">
+                <!-- Image -->
+                <div class="col-12 col-md-4 p-0">
+                  <img src="./img/bin.jpg" class="img-fluid rounded-start" alt="Card 1" style="object-fit: cover; height: 200px; width: 100%;">
+                </div>
+                <!-- Content -->
+                <div class="col-12 col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title text-left">Binning Techniques Vis.</h5>
+                    <p class="card-text text-left">
+                      Demonstrating equal width and equal depth binning techniques on user-input or randomly generated data.
+                                                            </p>
+                    <p class="card-text text-left text-white">
+                      <span class="badge bg-indigo ms-1 rounded-pill poppins-regular p-2">DataBinning</span>
+                      <span class="badge bg-indigo ms-1 rounded-pill p-2">DataScience</span>
+                      <span class="badge bg-indigo ms-1 rounded-pill p-2">DM</span>
+                    </p>
+                    
+                  </div>
+                </div>
+              </div>
+
+              <!-- Hover Effect -->
+               <a href="https://binningmethods.streamlit.app/" target="_blank">
+              <div class="hover-overlay">
+                <span class="hover-text">Explore</span>
+              </div>
+            </a>
+            </div>
+          </div>
+
+    
+          <!-- Card 2 -->
+          <div class="col-12 col-sm-6 col-lg-6 mb-4 mb-sm-0">
+            <div class="card hover-card h-100 rounded-3" style="border-radius: 12px; overflow: hidden; position: relative;">
+              <div class="row g-2 h-100">
+                <!-- Image -->
+                <div class="col-12 col-md-4 p-0">
+                  <img src="./img/data.jpg" class="img-fluid rounded-start" alt="Card 1" style="object-fit: cover; height: 200px; width: 100%;">
+                </div>
+                <!-- Content -->
+                <div class="col-12 col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title text-left">Data Cleaning Assistant                   </h5>
+                    <p class="card-text text-left">
+                      A tool to help users clean datasets by handling missing values, removing duplicates, and correcting data types.
+                                        </p>
+                    <p class="card-text text-left text-white">
+                      <span class="badge bg-indigo ms-1 rounded-pill poppins-regular p-2">DataCleaning</span>
+                      <span class="badge bg-indigo ms-1 rounded-pill p-2">DataPreprocessing</span>
+                      <span class="badge bg-indigo ms-1 rounded-pill p-2">Duplicates</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <!-- Hover Effect -->
+               <a href="https://datacleaningasisstant.streamlit.app/" target="_blank">
+              <div class="hover-overlay">
+                <span class="hover-text">Explore</span>
+              </div>
+            </a>
+            </div>
+          </div>
+
+    
+          <!-- Add more cards here as needed -->
+    
+        </div> <!-- End of row -->
+
+        <div class="row g-4">
+          <!-- Card 1 -->
+          <div class="col-12 col-sm-6 col-lg-6 mb-4 mb-sm-0">
+            <div class="card hover-card h-100 rounded-3" style="border-radius: 12px; overflow: hidden; position: relative;">
+              <div class="row g-2 h-100">
+                <!-- Image -->
+                <div class="col-12 col-md-4 p-0">
+                  <img src="./img/sen.png" class="img-fluid rounded-start" alt="Card 1" style="object-fit: cover; height: 200px; width: 100%;">
+                </div>
+                <!-- Content -->
+                <div class="col-12 col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title text-left">Sentiment Analysis App                    </h5>
+                    <p class="card-text text-left">
+                      Sentiment analysis on a CSV file, cleans the text, analyzes sentiment, visualizes distribution, and allows data download.                                                            </p>
+                    <p class="card-text text-left text-white">
+                      <span class="badge bg-indigo ms-1 rounded-pill poppins-regular p-2">SentimentAnalysis</span>
+                      <span class="badge bg-indigo ms-1 rounded-pill p-2">NaturalLanguageProcessing</span>
+                      <!-- <span class="badge bg-indigo ms-1 rounded-pill p-2">DM</span> -->
+                    </p>
+                    
+                  </div>
+                </div>
+              </div>
+              <!-- Hover Effect -->
+              <a href="https://sentimentanalysiss.streamlit.app/" target="_blank">
+              <div class="hover-overlay">
+                <span class="hover-text">Explore</span>
+              </div>
+            </a>
+            </div>
+          </div>
+
+    
+          <!-- Card 2 -->
+          <div class="col-12 col-sm-6 col-lg-6 mb-4 mb-sm-0">
+            <div class="card hover-card h-100 rounded-3" style="border-radius: 12px; overflow: hidden; position: relative;">
+              <div class="row g-2 h-100">
+                <!-- Image -->
+                <div class="col-12 col-md-4 p-0">
+                  <img src="./img/music.jpg" class="img-fluid rounded-start" alt="Card 1" style="object-fit: cover; height: 200px; width: 100%;">
+                </div>
+                <!-- Content -->
+                <div class="col-12 col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title text-left">Music Genre Classifier                   </h5>
+                    <p class="card-text text-left">
+                      Upload an audio file to predict its genre using a pre-trained machine learning model.                                        </p>
+                    <p class="card-text text-left text-white">
+                      <span class="badge bg-indigo ms-1 rounded-pill poppins-regular p-2">AudioClassification</span>
+                      <span class="badge bg-indigo ms-1 rounded-pill p-2">MusicGenre</span>
+                      <!-- <span class="badge bg-indigo ms-1 rounded-pill p-2">MachineLearning</span> -->
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <!-- Hover Effect -->
+              <a href="https://musicgenreclassifierr.streamlit.app/" target="_blank">
+              <div class="hover-overlay">
+                <span class="hover-text">Explore</span>
+              </div>
+            </a>
+            </div>
+          </div>
+
+    
+          <!-- Add more cards here as needed -->
+    
+        </div> <!-- End of row -->
+
+        <div class="row g-4">
+          <!-- Card 1 -->
+          <div class="col-12 col-sm-6 col-lg-6 mb-4 mb-sm-0">
+            <div class="card hover-card h-100 rounded-3" style="border-radius: 12px; overflow: hidden; position: relative;">
+              <div class="row g-2 h-100">
+                <!-- Image -->
+                <div class="col-12 col-md-4 p-0">
+                  <img src="./img/movie.jpg" class="img-fluid rounded-start" alt="Card 1" style="object-fit: cover; height: 200px; width: 100%;">
+                </div>
+                <!-- Content -->
+                <div class="col-12 col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title text-left"> Movie Recommendation System                    </h5>
+                    <p class="card-text text-left">
+                      Enter a movie title to receive personalized movie recommendations based on genre similarity using machine learning.                    <p class="card-text text-left text-white">
+                      <span class="badge bg-indigo ms-1 rounded-pill poppins-regular p-2">MovieRecommendation</span>
+                      <span class="badge bg-indigo ms-1 rounded-pill p-2">CosineSimilarity</span>
+                      <!-- <span class="badge bg-indigo ms-1 rounded-pill p-2">DM</span> -->
+                    </p>
+                    
+                  </div>
+                </div>
+              </div>
+              <!-- Hover Effect -->
+               <a href="https://moviesrecommendationsy.streamlit.app/" target="_blank">
+              <div class="hover-overlay">
+                <span class="hover-text">Explore</span>
+              </div>
+            </a>
+            </div>
+          </div>
+
+    
+          <!-- Card 2 -->
+          <!-- <div class="col-12 col-sm-6 col-lg-6 mb-4 mb-sm-0">
+            <div class="card hover-card h-100 rounded-3" style="border-radius: 12px; overflow: hidden; position: relative;">
+              <div class="row g-2 h-100">
+                <div class="col-12 col-md-4 p-0">
+                  <img src="./img/clu.jpg" class="img-fluid rounded-start" alt="Card 1" style="object-fit: cover; height: 200px; width: 100%;">
+                </div>
+                <div class="col-12 col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title text-left">Music Genre Classifier                   </h5>
+                    <p class="card-text text-left">
+                      Upload an audio file to predict its genre using a pre-trained machine learning model.                                        </p>
+                    <p class="card-text text-left text-white">
+                      <span class="badge bg-indigo ms-1 rounded-pill poppins-regular p-2">AudioClassification</span>
+                      <span class="badge bg-indigo ms-1 rounded-pill p-2">MusicGenre</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="hover-overlay">
+                <span class="hover-text">Explore</span>
+              </div>
+            </div>
+          </div> -->
+
+    
+          <!-- Add more cards here as needed -->
+    
+        </div> <!-- End of row -->
+      </div> <!-- End of container-fluid -->
+    </section>
+    
+    
+    
+    
+    
+    
+    
+      
+
+    <!-- Developer Section -->
+    <section id="developer" class="py-5">
+      
+      <div class="container text-center">
+        <!-- Title -->
+        <h1 class="black fs-l3 lh-2 md-fs-xl1 md-lh-1 fw-900 poppins-bold">The Developer</h1>
+    
+        <!-- Profile Picture -->
+        <div class="my-4">
+          <img src="./img/1723917622573.jpg" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 150px; height: 150px;">
+        </div>
+    
+        <!-- Name -->
+        <h5 class="mb-1">Ghanshyamsinh Zala</h5>
+    
+        <!-- Designation -->
+        <p class="text-muted mb-2">Freelancer & Developer</p>
+    
+        <!-- Short Description -->
+        <p class="text-muted mb-4">
+          A passionate developer with expertise in building scalable</br>web applications and a keen interest in exploring new technologies.
+        </p>
+    
+        <!-- Social Media Icons -->
+        <div>
+          <a href="https://linktr.ee/ghza3006" target="_blank" class="poppins-semibold">Follow me here</a>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Include Font Awesome for Icons -->
+    
+    
+    <!-- Include Font Awesome for Icons -->
+    
+    
+
+    <!-- Footer -->
+    <footer class="" style="background-color: black;">
+      <p>&copy; 2024 DataVerse. All rights reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  </body>
+</html>
