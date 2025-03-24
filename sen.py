@@ -2,104 +2,117 @@ import streamlit as st
 import pandas as pd
 from textblob import TextBlob
 import matplotlib.pyplot as plt
+import seaborn as sns
 import re
+from wordcloud import WordCloud
+from io import BytesIO
+import json
 
 # Set up Streamlit App
 st.title("Sentiment Analysis App")
-st.markdown("Upload a CSV file with a `text` column for sentiment analysis.")
+st.markdown("Upload a CSV file with a `text` column or choose a sample dataset.")
 
-# File Upload
-uploaded_file = st.file_uploader("Choose a CSV file", type=["csv"])
+# Prebuilt sample datasets
+def load_sample_data():
+    return {
+        "Sample 1": pd.DataFrame({"text": [
+            "I love this product!", "Worst experience ever.", "It was okay.", "Absolutely fantastic!", "Not great, not terrible.",
+            "Highly recommend this!", "I would never buy this again.", "Just mediocre.", "Incredible value for money!", "Very disappointing.",
+            "Exceeded my expectations!", "I’m really unhappy with my purchase.", "It’s just alright.", "Best decision I ever made!", "I regret buying this.", "Satisfactory but could be better."
+        ]}),
+        "Sample 2": pd.DataFrame({"text": [
+            "Best service I've had!", "I hate it!", "Meh, could be better.", "Loved it so much!", "Average experience.",
+            "Exceptional customer support!", "Terrible and frustrating.", "Not bad, but not great either.", "Absolutely loved every moment!", "I wouldn't recommend this to anyone.",
+            "Service was decent, nothing special.", "Fabulous experience overall!", "Completely unsatisfied with the service.", "It was just okay.", "Really impressed with the attention to detail!", "Disappointing service, I expected more."
+        ]}),
+        "Sample 3": pd.DataFrame({"text": [
+            "So bad!", "Not impressed.", "Excellent product!", "Could be worse.", "Very happy with my purchase!",
+            "Absolutely terrible experience!", "Mediocre at best.", "Fantastic quality!", "I’m quite satisfied with this.", "Displeased with my choice.",
+            "Surpassed my expectations!", "It’s not what I hoped for.", "Thrilled with the results!", "Could definitely improve.", "I love it!"
+        ]}),
+        "Sample 4": pd.DataFrame({"text": [
+            "Terrible service!", "Pretty decent.", "I wouldn't recommend it.", "Awesome deal!", "Just okay.",
+            "Horrible experience overall!", "Fairly good service.", "Not worth the price.", "Great value for the money!", "Satisfactory but not remarkable.",
+            "Very poor customer support.", "Exceeded my expectations on quality!", "It was just fine, nothing more.", "Would definitely buy again!", "Average at best."
+        ]})
+    }
 
-if uploaded_file:
-    try:
-        # Step 1: Load Data
-        data = pd.read_csv(uploaded_file)
+sample_data = load_sample_data()
+selected_sample = st.selectbox("Or choose a sample dataset:", list(sample_data.keys()))
 
-        if 'text' not in data.columns:
-            st.error("The uploaded CSV file must contain a 'text' column.")
-        else:
-            st.write("### Sample Data (First 5 Rows)")
-            st.write(data.head())
+uploaded_file = st.file_uploader("Upload a CSV file", type=["csv"])
 
-            # Step 2: Preprocess Text
-            def clean_text(text):
-                if isinstance(text, str):  # Ensure the input is a string
-                    text = re.sub(r"http\S+", "", text)  # Remove URLs
-                    text = re.sub(r"@\w+", "", text)    # Remove mentions
-                    text = re.sub(r"#\w+", "", text)    # Remove hashtags
-                    text = re.sub(r"[^\w\s]", "", text) # Remove punctuation
-                    return text.strip().lower()         # Normalize case and trim spaces
-                return ""  # Return an empty string for non-string values
+data = pd.read_csv(uploaded_file) if uploaded_file else sample_data[selected_sample]
 
-            data['cleaned_text'] = data['text'].apply(clean_text)
+if 'text' not in data.columns:
+    st.error("The dataset must contain a 'text' column.")
+    st.stop()
 
-            # Remove rows with empty 'cleaned_text'
-            data = data[data['cleaned_text'] != ""]
+# Text Preprocessing
+def clean_text(text):
+    text = re.sub(r"http\S+", "", text)
+    text = re.sub(r"@\w+", "", text)
+    text = re.sub(r"#\w+", "", text)
+    text = re.sub(r"[^\w\s]", "", text)
+    return text.strip().lower()
 
-            if data.empty:
-                st.error("No valid text data after cleaning. Please check your file.")
-            else:
-                # Step 3: Sentiment Analysis
-                def analyze_sentiment(text):
-                    if text.strip():  # Only analyze non-empty text
-                        analysis = TextBlob(text)
-                        if analysis.sentiment.polarity > 0:
-                            return "Positive"
-                        elif analysis.sentiment.polarity == 0:
-                            return "Neutral"
-                        else:
-                            return "Negative"
-                    return "Neutral"  # Default to Neutral for empty or invalid text
+data['cleaned_text'] = data['text'].apply(lambda x: clean_text(str(x)))
 
-                data['Sentiment'] = data['cleaned_text'].apply(analyze_sentiment)
+# Sentiment Analysis
+def analyze_sentiment(text):
+    analysis = TextBlob(text)
+    polarity = analysis.sentiment.polarity
+    subjectivity = analysis.sentiment.subjectivity
+    sentiment = "Positive" if polarity > 0 else "Negative" if polarity < 0 else "Neutral"
+    return sentiment, polarity, subjectivity
 
-                st.write("### Sentiment Analysis Results")
-                st.write(data.head())
+data[['Sentiment', 'Polarity', 'Subjectivity']] = data['cleaned_text'].apply(lambda x: pd.Series(analyze_sentiment(x)))
 
-                # Step 4: Visualize Sentiment Distribution
-                sentiment_counts = data['Sentiment'].value_counts()
+# Display Results
+st.write("### Sentiment Analysis Results")
+st.write(data)
 
-                # Pie Chart
-                st.write("### Sentiment Distribution (Pie Chart)")
-                fig1, ax1 = plt.subplots(figsize=(8, 6))
-                sentiment_counts.plot.pie(
-                    autopct='%1.1f%%', 
-                    colors=['lightgreen', 'gold', 'red'], 
-                    startangle=140, 
-                    labels=sentiment_counts.index,
-                    ax=ax1
-                )
-                ax1.set_ylabel("")  # Remove default ylabel
-                st.pyplot(fig1)
+# Sentiment Distribution Visualization
+st.write("### Sentiment Distribution")
+sentiment_counts = data['Sentiment'].value_counts()
+fig, ax = plt.subplots(figsize=(8, 6))
+sns.barplot(x=sentiment_counts.index, y=sentiment_counts.values, palette=['lightgreen', 'gold', 'red'], ax=ax)
+ax.set_title("Sentiment Distribution")
+ax.set_xlabel("Sentiment")
+ax.set_ylabel("Number of Entries")
+st.pyplot(fig)
 
-                # Bar Graph
-                st.write("### Sentiment Distribution (Bar Graph)")
-                fig2, ax2 = plt.subplots(figsize=(8, 6))
-                sentiment_counts.plot(
-                    kind='bar', 
-                    color=['lightgreen', 'gold', 'red'], 
-                    edgecolor='black',
-                    ax=ax2
-                )
-                ax2.set_title("Sentiment Distribution")
-                ax2.set_xlabel("Sentiment")
-                ax2.set_ylabel("Number of Posts")
-                ax2.set_xticks(range(len(sentiment_counts)))
-                ax2.set_xticklabels(sentiment_counts.index, rotation=0)
-                st.pyplot(fig2)
+# Word Cloud Visualization
+def generate_wordcloud(sentiment):
+    text = " ".join(data[data['Sentiment'] == sentiment]['cleaned_text'])
+    if text:
+        wc = WordCloud(background_color='white', max_words=100, colormap='coolwarm').generate(text)
+        fig, ax = plt.subplots()
+        ax.imshow(wc, interpolation='bilinear')
+        ax.axis("off")
+        return fig
+    return None
 
-                # Step 5: Provide Download Option for Processed Data
-                st.write("### Download Processed Data")
-                processed_file = data.to_csv(index=False)
-                st.download_button(
-                    label="Download as CSV",
-                    data=processed_file,
-                    file_name="processed_sentiment_data.csv",
-                    mime="text/csv"
-                )
+st.write("### Word Clouds")
+for sentiment in ["Positive", "Neutral", "Negative"]:
+    st.write(f"**{sentiment} Sentiment**")
+    fig = generate_wordcloud(sentiment)
+    if fig:
+        st.pyplot(fig)
+    else:
+        st.write("No words available for this sentiment.")
 
-    except Exception as e:
-        st.error(f"An error occurred: {e}")
-else:
-    st.info("Please upload a CSV file to proceed.")
+# Export Options
+st.write("### Download Processed Data")
+data_csv = data.to_csv(index=False).encode()
+data_json = data.to_json(orient='records').encode()
+data_excel = BytesIO()
+data.to_excel(data_excel, index=False, engine='openpyxl')
+
+download_format = st.radio("Choose format:", ["CSV", "JSON", "Excel"])
+if download_format == "CSV":
+    st.download_button("Download CSV", data=data_csv, file_name="processed_data.csv", mime="text/csv")
+elif download_format == "JSON":
+    st.download_button("Download JSON", data=data_json, file_name="processed_data.json", mime="application/json")
+elif download_format == "Excel":
+    st.download_button("Download Excel", data=data_excel.getvalue(), file_name="processed_data.xlsx", mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
