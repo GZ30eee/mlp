@@ -14,3 +14,7 @@ wordcloud
 yfinance
 plotly
 openpyxl
+librosa
+soundfile
+audioread
+ffmpeg-python
