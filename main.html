@@ -3,8 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dataverse</title>
-    <link rel="icon" type="image/png" href="./img/favicon.png" /> <!-- Change this path -->
+    <title>One Page Web Application</title>
     <!-- Bootstrap CSS -->
     <link
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -322,36 +321,43 @@
     </nav>
 
     <!-- About Section -->
-    <section id="about" class="min-h-screen flex justify-center items-center relative mb-4 overflow-hidden">
+    <section id="about" class="min-h-screen flex justify-center items-center relative mb-4 overflow-hidden" style="background-color: #010001;">
       <!-- Video background -->
       <div class="position-absolute top-0 left-0 w-full h-full">
-        <video autoplay muted loop class="object-cover w-full h-full object-center">
-          <source src="./videos/vid.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
+          <video autoplay muted loop class="object-cover w-full h-full object-center" id="backgroundVideo" onloadeddata="this.style.opacity=1;" style="opacity: 0; transition: opacity 1s;">
+              <source src="./videos/vid.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+          </video>
       </div>
-    
+  
       <!-- Content -->
       <div class="mx-5 md:mx-l5 text-center relative z-10">
-        <div class="inline-block br-round bg-indigo-30 indigo-lightest p-2 px-3 fs-s2 mb-5 poppins-semibold">
-          <div class="inline-block bg-indigo indigo-lightest br-round px-3 py-2 mr-1 fs-s3 poppins-thin">
-            Machine Learning
+          <div class="inline-block br-round bg-indigo-30 indigo-lightest p-2 px-3 fs-s2 mb-5 poppins-semibold">
+              <div class="inline-block bg-indigo indigo-lightest br-round px-3 py-2 mr-1 fs-s3 poppins-thin">
+                  Machine Learning
+              </div>
+              by Ghanshyamsinh Zala
           </div>
-          by Ghanshyamsinh Zala
+          <div>
+            <h1 class="white fs-l3 lh-2 md-fs-xl1 md-lh-1 fw-900 poppins-bold">
+                DataVerse
+            </h1>
+            <p class="text-sm text-white mt-4 poppins-semibold mb-3">
+                DataVerse is an innovative platform designed to empower users with</br>
+                cutting-edge data analysis tools. Explore various data mining</br>
+                techniques and machine learning models to unlock insights from your
+                data.
+            </p>
+        
+           
+
+
+
         </div>
-        <div>
-          <h1 class="white fs-l3 lh-2 md-fs-xl1 md-lh-1 fw-900 poppins-bold">
-            DataVerse
-          </h1>
-          <p class="text-sm text-white mt-4 poppins-semibold">
-            DataVerse is an innovative platform designed to empower users with</br>
-            cutting-edge data analysis tools. Explore various data mining</br>
-            techniques and machine learning models to unlock insights from your
-            data.
-          </p>
-        </div>
+        
       </div>
-    </section>
+  </section>
+  
     
     
     
@@ -385,9 +391,9 @@
                       allows users to analyze stock price trends by fetching historical data for a specified stock symbol and date range.
                     </p>
                     <p class="card-text text-left text-white">
-                      <span class="badge bg-indigo ms-1 rounded-pill poppins-regular p-2">Stock</span>
-                      <span class="badge bg-indigo ms-1 rounded-pill p-2">ML</span>
-                      <span class="badge bg-indigo ms-1 rounded-pill p-2">Garph</span>
+                      <span class="badge bg-indigo ms-1 rounded-pill poppins-regular p-2 mt-2 mt-sm-0">Stock</span>
+                      <span class="badge bg-indigo ms-1 rounded-pill p-2 mt-2 mt-sm-0">ML</span>
+                      <span class="badge bg-indigo ms-1 rounded-pill p-2 mt-2 mt-sm-0">Garph</span>
                     </p>
                     
                   </div>
@@ -419,9 +425,9 @@
                       Visualize K-Means clustering with customizable settings for data samples, clusters, and standard deviation.
                     </p>
                     <p class="card-text text-left text-white">
-                      <span class="badge bg-indigo ms-1 rounded-pill poppins-regular p-2">Clustering</span>
-                      <span class="badge bg-indigo ms-1 rounded-pill p-2">DataVisualization</span>
-                      <span class="badge bg-indigo ms-1 rounded-pill p-2">ML</span>
+                      <span class="badge bg-indigo ms-1 rounded-pill poppins-regular p-2 mt-2 mt-sm-0">Clustering</span>
+                      <span class="badge bg-indigo ms-1 rounded-pill p-2 mt-2 mt-sm-0">DataVisualization</span>
+                      <span class="badge bg-indigo ms-1 rounded-pill p-2 mt-2 mt-sm-0">ML</span>
                     </p>
                   </div>
                 </div>
@@ -456,11 +462,12 @@
                     <p class="card-text text-left">
                       Train and visualize a Decision Tree model on classification or regression datasets using Streamlit
                                         </p>
-                    <p class="card-text text-left text-white">
-                      <span class="badge bg-indigo ms-1 rounded-pill poppins-regular p-2">DecisionTree</span>
-                      <span class="badge bg-indigo ms-1 rounded-pill p-2">DataScience</span>
-                      <span class="badge bg-indigo ms-1 rounded-pill p-2">MachineLearning</span>
-                    </p>
+                                        <p class="card-text text-left text-white">
+                                          <span class="badge bg-indigo ms-1 rounded-pill poppins-regular p-2 mt-2 mt-sm-0">DecisionTree</span>
+                                          <span class="badge bg-indigo ms-1 rounded-pill p-2 mt-2 mt-sm-0">DataScience</span>
+                                          <span class="badge bg-indigo ms-1 rounded-pill p-2 mt-2 mt-sm-0">MachineLearning</span>
+                                      </p>
+                                      
                     
                   </div>
                 </div>
@@ -491,9 +498,9 @@
                       Implement the Apriosri algorithm for mining frequent itemsets and generating association rules from transaction data.                    
                     </p>
                     <p class="card-text text-left text-white">
-                      <span class="badge bg-indigo ms-1 rounded-pill poppins-regular p-2">AprioriAlgorithm</span>
-                      <span class="badge bg-indigo ms-1 rounded-pill p-2">RuleMining</span>
-                      <span class="badge bg-indigo ms-1 rounded-pill p-2">Tables</span>
+                      <span class="badge bg-indigo ms-1 rounded-pill poppins-regular p-2 mt-2 mt-sm-0">AprioriAlgorithm</span>
+                      <span class="badge bg-indigo ms-1 rounded-pill p-2 mt-2 mt-sm-0">RuleMining</span>
+                      <span class="badge bg-indigo ms-1 rounded-pill p-2 mt-2 mt-sm-0">Tables</span>
                     </p>
                   </div>
                 </div>
@@ -529,9 +536,9 @@
                       Demonstrating equal width and equal depth binning techniques on user-input or randomly generated data.
                                                             </p>
                     <p class="card-text text-left text-white">
-                      <span class="badge bg-indigo ms-1 rounded-pill poppins-regular p-2">DataBinning</span>
-                      <span class="badge bg-indigo ms-1 rounded-pill p-2">DataScience</span>
-                      <span class="badge bg-indigo ms-1 rounded-pill p-2">DM</span>
+                      <span class="badge bg-indigo ms-1 rounded-pill poppins-regular p-2 mt-2 mt-sm-0">DataBinning</span>
+                      <span class="badge bg-indigo ms-1 rounded-pill p-2 mt-2 mt-sm-0">DataScience</span>
+                      <span class="badge bg-indigo ms-1 rounded-pill p-2 mt-2 mt-sm-0">DM</span>
                     </p>
                     
                   </div>
@@ -564,9 +571,9 @@
                       A tool to help users clean datasets by handling missing values, removing duplicates, and correcting data types.
                                         </p>
                     <p class="card-text text-left text-white">
-                      <span class="badge bg-indigo ms-1 rounded-pill poppins-regular p-2">DataCleaning</span>
-                      <span class="badge bg-indigo ms-1 rounded-pill p-2">DataPreprocessing</span>
-                      <span class="badge bg-indigo ms-1 rounded-pill p-2">Duplicates</span>
+                      <span class="badge bg-indigo ms-1 rounded-pill poppins-regular p-2 mt-2 mt-sm-0">DataCleaning</span>
+                      <span class="badge bg-indigo ms-1 rounded-pill p-2 mt-2 mt-sm-0">DataPreprocessing</span>
+                      <span class="badge bg-indigo ms-1 rounded-pill p-2 mt-2 mt-sm-0">Duplicates</span>
                     </p>
                   </div>
                 </div>
@@ -601,8 +608,8 @@
                     <p class="card-text text-left">
                       Sentiment analysis on a CSV file, cleans the text, analyzes sentiment, visualizes distribution, and allows data download.                                                            </p>
                     <p class="card-text text-left text-white">
-                      <span class="badge bg-indigo ms-1 rounded-pill poppins-regular p-2">SentimentAnalysis</span>
-                      <span class="badge bg-indigo ms-1 rounded-pill p-2">NaturalLanguageProcessing</span>
+                      <span class="badge bg-indigo ms-1 rounded-pill poppins-regular p-2 mt-2 mt-sm-0">SentimentAnalysis</span>
+                      <span class="badge bg-indigo ms-1 rounded-pill p-2 mt-2 mt-sm-0">NaturalLanguageProcessing</span>
                       <!-- <span class="badge bg-indigo ms-1 rounded-pill p-2">DM</span> -->
                     </p>
                     
@@ -634,8 +641,8 @@
                     <p class="card-text text-left">
                       Upload an audio file to predict its genre using a pre-trained machine learning model.                                        </p>
                     <p class="card-text text-left text-white">
-                      <span class="badge bg-indigo ms-1 rounded-pill poppins-regular p-2">AudioClassification</span>
-                      <span class="badge bg-indigo ms-1 rounded-pill p-2">MusicGenre</span>
+                      <span class="badge bg-indigo ms-1 rounded-pill poppins-regular p-2 mt-2 mt-sm-0">AudioClassification</span>
+                      <span class="badge bg-indigo ms-1 rounded-pill p-2 mt-2 mt-sm-0">MusicGenre</span>
                       <!-- <span class="badge bg-indigo ms-1 rounded-pill p-2">MachineLearning</span> -->
                     </p>
                   </div>
@@ -670,8 +677,8 @@
                     <h5 class="card-title text-left"> Movie Recommendation System                    </h5>
                     <p class="card-text text-left">
                       Enter a movie title to receive personalized movie recommendations based on genre similarity using machine learning.                    <p class="card-text text-left text-white">
-                      <span class="badge bg-indigo ms-1 rounded-pill poppins-regular p-2">MovieRecommendation</span>
-                      <span class="badge bg-indigo ms-1 rounded-pill p-2">CosineSimilarity</span>
+                      <span class="badge bg-indigo ms-1 rounded-pill poppins-regular p-2 mt-2 mt-sm-0">MovieRecommendation</span>
+                      <span class="badge bg-indigo ms-1 rounded-pill p-2 mt-2 mt-sm-0">CosineSimilarity</span>
                       <!-- <span class="badge bg-indigo ms-1 rounded-pill p-2">DM</span> -->
                     </p>
                     
