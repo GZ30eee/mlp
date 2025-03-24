@@ -13,3 +13,4 @@ textblob
 wordcloud
 yfinance
 plotly
+openpyxl
